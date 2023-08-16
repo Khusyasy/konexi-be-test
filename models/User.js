@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const SALT_WORK_FACTOR = 10;
 
 const UserSchema = new mongoose.Schema(
   {
@@ -11,6 +13,7 @@ const UserSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+      select: false,
     },
   },
   {
@@ -19,6 +22,24 @@ const UserSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
+
+UserSchema.pre('save', async function (next) {
+  const user = this;
+  if (!user.isModified('password')) return next();
+  try {
+    const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
+    const hash = await bcrypt.hash(user.password, salt);
+    user.password = hash;
+    return next();
+  } catch (err) {
+    return next(err);
+  }
+});
+
+UserSchema.methods.comparePassword = async function (candidatePassword) {
+  const user = this;
+  return bcrypt.compare(candidatePassword, user.password);
+};
 
 UserSchema.virtual('followers', {
   ref: 'Follow',
