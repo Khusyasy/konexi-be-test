@@ -41,6 +41,12 @@ UserSchema.methods.comparePassword = async function (candidatePassword) {
   return bcrypt.compare(candidatePassword, user.password);
 };
 
+UserSchema.methods.noPass = function () {
+  const user = this.toObject();
+  const { password, ...userWithoutPassword } = user;
+  return userWithoutPassword;
+};
+
 UserSchema.virtual('followers', {
   ref: 'Follow',
   localField: '_id',
