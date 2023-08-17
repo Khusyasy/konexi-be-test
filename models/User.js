@@ -15,6 +15,10 @@ const UserSchema = new mongoose.Schema(
       required: true,
       select: false,
     },
+    tokens: {
+      type: [String],
+      select: false,
+    },
   },
   {
     timestamps: true,
