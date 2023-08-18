@@ -7,7 +7,34 @@ const Comment = require('../models/Comment');
 /** @type {import("express").RequestHandler}*/
 module.exports.getPosts = async function (req, res, next) {
   try {
-    const posts = await Post.find().populate('author nLikes nComments');
+    const { feeds, q } = req.query;
+
+    let findQuery = {};
+
+    if (feeds) {
+      const user = await User.findById(req.user.id).populate({
+        path: 'following',
+        select: 'target',
+        populate: {
+          path: 'target',
+          select: '_id',
+        },
+      });
+      const following = user.following.map((follow) => follow.target.id);
+
+      findQuery = { ...findQuery, author: { $in: following } };
+    }
+
+    if (q) {
+      findQuery = {
+        ...findQuery,
+        caption: { $regex: q, $options: 'i' },
+      };
+    }
+
+    const posts = await Post.find(findQuery).populate(
+      'author nLikes nComments'
+    );
     res.json(formatRes({ posts }));
   } catch (error) {
     next(error);

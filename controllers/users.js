@@ -40,7 +40,14 @@ module.exports.getUserByUsername = async function (req, res, next) {
   try {
     const { username } = req.params;
 
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username }).populate({
+      path: 'nFollowers followers nFollowing following',
+      select: 'target',
+      populate: {
+        path: 'target',
+        select: 'username',
+      },
+    });
     if (!user) {
       return res
         .status(404)
