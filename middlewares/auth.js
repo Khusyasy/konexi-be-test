@@ -22,7 +22,6 @@ module.exports = async function (req, res, next) {
     })
       .select('+tokens')
       .exec();
-    console.log(user);
     if (!user) {
       return res.status(401).json(formatRes(null, 'error', 'Unauthorized'));
     }
@@ -32,6 +31,7 @@ module.exports = async function (req, res, next) {
     next();
   } catch (err) {
     if (err.name === 'JsonWebTokenError') {
+      console.log(token, err);
       return res.status(401).json(formatRes(null, 'error', 'JWT invalid'));
     }
     return res.status(403).json(formatRes(null, 'error', 'Forbidden'));
