@@ -30,7 +30,7 @@ module.exports = async function (req, res, next) {
     req.token = token;
     next();
   } catch (err) {
-    if (err.name === 'JsonWebTokenError') {
+    if (err.name === 'JsonWebTokenError' || err.name === 'TokenExpiredError') {
       console.log(token, err);
       return res.status(401).json(formatRes(null, 'error', 'JWT invalid'));
     }

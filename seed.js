@@ -66,13 +66,15 @@ async function main() {
 
   const post1 = await Post.create({
     author: alice._id,
-    image: 'https://picsum.photos/200',
+    image:
+      'https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692375980942.jpg',
     caption: 'Alice post 1',
   });
 
   const post2 = await Post.create({
     author: alice._id,
-    image: 'https://picsum.photos/200',
+    image:
+      'https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692376173903.jpg',
     caption: 'Alice post 2',
   });
 
@@ -111,7 +113,7 @@ async function main() {
     target: comment1._id,
   });
 
-  const posts = await Post.find().populate('nComments comments');
+  const posts = await Post.find().populate('author nComments nLikes');
   console.log(JSON.stringify(posts, null, 2));
 
   process.exit(0);
