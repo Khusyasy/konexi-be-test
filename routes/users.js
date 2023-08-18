@@ -11,7 +11,7 @@ router.patch('/', authUser, usersController.updateUser);
 router.delete('/', authUser, usersController.deleteUser);
 
 router.get('/:username', authUser, usersController.getUserByUsername);
-router.get('/:username/follow', authUser, usersController.followUser);
+router.put('/:username/follow', authUser, usersController.followUser);
 router.delete('/:username/follow', authUser, usersController.unfollowUser);
 
 module.exports = router;
