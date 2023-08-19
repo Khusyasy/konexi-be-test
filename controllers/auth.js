@@ -52,7 +52,7 @@ module.exports.login = async function (req, res, next) {
         id: user.id,
         username: user.username,
       },
-      process.env.ACCESS_TOKEN_SECRET,
+      process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
 
