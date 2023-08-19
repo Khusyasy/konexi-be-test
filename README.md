@@ -34,3 +34,9 @@ AWS_SECRET_ACCESS_KEY: Secret access key of the IAM user
 6. Run `npm install` to install all the dependencies
 7. Run `npm start` to start the server
 8. The server will be running on port 3000 by default
+
+## Technologies Used
+- Node.js + Express
+- MongoDB + Mongoose
+- JSON Web Token (JWT)
+- AWS S3 and EC2
