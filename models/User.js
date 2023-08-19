@@ -19,6 +19,9 @@ const UserSchema = new mongoose.Schema(
       type: [String],
       select: false,
     },
+    image: {
+      type: String, // url to s3 bucket
+    },
   },
   {
     timestamps: true,

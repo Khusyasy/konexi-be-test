@@ -27,7 +27,13 @@ module.exports.createUser = async function (req, res, next) {
         .json(formatRes({ password: 'password is required' }, 'fail'));
     }
 
-    const user = await User.create({ username, password });
+    const data = { username, password };
+
+    if (req.file) {
+      data.image = req.file.location;
+    }
+
+    const user = await User.create(data);
 
     res.json(formatRes({ user: user.noPass() }));
   } catch (error) {
@@ -69,6 +75,7 @@ module.exports.updateUser = async function (req, res, next) {
 
     if (username) user.username = username;
     if (password) user.password = password;
+    if (req.file) user.image = req.file.location;
 
     await user.save();
 
