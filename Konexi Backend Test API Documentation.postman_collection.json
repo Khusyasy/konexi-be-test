@@ -1,0 +1,2062 @@
+{
+	"info": {
+		"_postman_id": "fb588d3a-ca69-4bf1-8ebe-2b379e2b3e78",
+		"name": "Konexi Backend Test API Documentation",
+		"description": "This API provides a backend for your social media platform, allowing users to create posts, follow other users, like and comment on posts, and search for posts using keywords, and get user feeds based on their following. The API is designed to be secure, scalable, and user-friendly.\n\n## Endpoints\n\nThis API is divided into two main components:\n\n1. User Management\n    \n2. Post Management\n    \n\n## Authentication\n\nUser authentication is handled using JWT (JSON Web Tokens). To access protected routes and perform actions on behalf of a user, you must include a valid JWT token in the Authorization header of your requests.\n\n## Response Format\n\nThe format is based on [JSend](https://github.com/omniti-labs/jsend)\n\n| Status | Description | Returned Keys |\n| --- | --- | --- |\n| success | All went well, and (usually) some data was returned. | status, data |\n| fail | There was a problem with the data submitted, or some pre-condition of the API call wasn't satisfied | status, data |\n| error | An error occurred in processing the request, i.e. an exception was thrown | status, message |",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15921073",
+		"_collection_link": "https://www.postman.com/khusyasy/workspace/konexi/collection/15921073-fb588d3a-ca69-4bf1-8ebe-2b379e2b3e78?action=share&source=collection_link&creator=15921073"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.collectionVariables.set(\"userId\", pm.response.json().data.user.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "khusyasy",
+									"description": "required",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "khusyasy",
+									"description": "required",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"description": "optional profile picture",
+									"type": "file",
+									"src": "/C:/Users/khusyasy/Pictures/img3.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "| **field** | **type** |\n| --- | --- |\n| username | string (required) |\n| password | string (required) |"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "khusyasy",
+											"description": "required",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "khusyasy",
+											"description": "required",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"description": "optional profile picture",
+											"type": "file",
+											"src": "/C:/Users/khusyasy/Pictures/img3.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/users",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "305"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"131-OdLB7+NAgkTcVf7sFzzXBeZ19Es\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:57:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"user\": {\n            \"username\": \"khusyasy\",\n            \"tokens\": [],\n            \"image\": \"https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692406624859.jpg\",\n            \"_id\": \"64e013613c27280cb2c9611b\",\n            \"createdAt\": \"2023-08-19T00:57:05.145Z\",\n            \"updatedAt\": \"2023-08-19T00:57:05.145Z\",\n            \"__v\": 0,\n            \"id\": \"64e013613c27280cb2c9611b\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Fail",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "khusyasy",
+											"description": "required",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "khusyasy",
+											"description": "required",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "image",
+											"description": "optional profile picture",
+											"type": "file",
+											"src": "/C:/Users/khusyasy/Pictures/img3.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/users",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c-P3FT6jB2KwOqsLkvxeJ5VSk3+ew\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:57:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"data\": {\n        \"password\": \"password is required\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"JWT\", pm.response.json().data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"khusyasy\",\r\n    \"password\": \"khusyasy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "| **field** | **type** |\n| --- | --- |\n| username | string (required) |\n| password | string (required) |"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"khusyasy\",\r\n    \"password\": \"khusyasy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/auth/login",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "240"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f0-rdHGPQG2FjAUH7e4HeRfbNBWnTI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:05:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTAwNzBhODQyZGQ2YzE4NGQxN2MyMiIsInVzZXJuYW1lIjoia2h1c3lhc3kiLCJpYXQiOjE2OTI0MDM1MDAsImV4cCI6MTY5MjQwNzEwMH0.jI44kmYusSXTX9FTOw0LzCqYoCtGx1x0V9DHwNxLUGA\"\n    }\n}"
+						},
+						{
+							"name": "Fail",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"khusyasy\",\r\n    \"password\": \"khusyasy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/auth/login",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "120"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"78-w4kaeoox+g9G0GbxJPK6RkFwLdM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:05:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"data\": {\n        \"username\": \"username or password is incorrect\",\n        \"password\": \"username or password is incorrect\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/users",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "850"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"352-gEj03RhiryW/susT0Sqty77Be+w\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:06:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"users\": [\n            {\n                \"_id\": \"64df9ce869c47bca25754b8e\",\n                \"username\": \"alice\",\n                \"createdAt\": \"2023-08-18T16:31:36.638Z\",\n                \"updatedAt\": \"2023-08-18T16:31:36.638Z\",\n                \"__v\": 0,\n                \"nFollowers\": 1,\n                \"nFollowing\": 2,\n                \"id\": \"64df9ce869c47bca25754b8e\"\n            },\n            {\n                \"_id\": \"64df9ce869c47bca25754b90\",\n                \"username\": \"bob\",\n                \"createdAt\": \"2023-08-18T16:31:36.713Z\",\n                \"updatedAt\": \"2023-08-18T23:18:02.531Z\",\n                \"__v\": 2,\n                \"nFollowers\": 1,\n                \"nFollowing\": 2,\n                \"id\": \"64df9ce869c47bca25754b90\"\n            },\n            {\n                \"_id\": \"64df9ce869c47bca25754b92\",\n                \"username\": \"charlie\",\n                \"createdAt\": \"2023-08-18T16:31:36.786Z\",\n                \"updatedAt\": \"2023-08-18T16:31:36.786Z\",\n                \"__v\": 0,\n                \"nFollowers\": 2,\n                \"nFollowing\": 0,\n                \"id\": \"64df9ce869c47bca25754b92\"\n            },\n            {\n                \"_id\": \"64e00784842dd6c184d17c4b\",\n                \"username\": \"khusyasy\",\n                \"createdAt\": \"2023-08-19T00:06:28.035Z\",\n                \"updatedAt\": \"2023-08-19T00:06:51.410Z\",\n                \"__v\": 1,\n                \"nFollowers\": 0,\n                \"nFollowing\": 0,\n                \"id\": \"64e00784842dd6c184d17c4b\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "khusyasy",
+									"description": "optional",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "testing",
+									"description": "optional",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"description": "optional profile picture",
+									"type": "file",
+									"src": "/C:/Users/khusyasy/Pictures/img1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/users/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "| **field** | **type** |\n| --- | --- |\n| username | string (optional) |\n| password | string (optional) |"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "khusyasy",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "testing",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"description": "optional profile picture",
+											"type": "file",
+											"src": "/C:/Users/khusyasy/Pictures/img1.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/users/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "293"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"125-Hhlq/5WuPftS8lNfXX+6y4nyJjQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:58:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"64e013613c27280cb2c9611b\",\n            \"username\": \"khusyasy\",\n            \"image\": \"https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692406722249.jpg\",\n            \"createdAt\": \"2023-08-19T00:57:05.145Z\",\n            \"updatedAt\": \"2023-08-19T00:58:42.515Z\",\n            \"__v\": 1,\n            \"id\": \"64e013613c27280cb2c9611b\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/users/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/users/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-bff5r/a5MyNNWy9hjn8a8pOLDxA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:09:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User by Username",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/:username",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"description": "username of user to get"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/users/{{username}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										"{{username}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "722"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d2-znEpUtT8t4ooQymWGbZ3rplGPWw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:07:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"64df9ce869c47bca25754b90\",\n            \"username\": \"bob\",\n            \"createdAt\": \"2023-08-18T16:31:36.713Z\",\n            \"updatedAt\": \"2023-08-18T23:18:02.531Z\",\n            \"__v\": 2,\n            \"followers\": [\n                {\n                    \"_id\": \"64df9ce869c47bca25754b94\",\n                    \"target\": {\n                        \"_id\": \"64df9ce869c47bca25754b90\",\n                        \"username\": \"bob\",\n                        \"id\": \"64df9ce869c47bca25754b90\"\n                    }\n                }\n            ],\n            \"nFollowers\": 1,\n            \"following\": [\n                {\n                    \"_id\": \"64df9ce869c47bca25754b96\",\n                    \"user\": \"64df9ce869c47bca25754b90\",\n                    \"target\": {\n                        \"_id\": \"64df9ce869c47bca25754b8e\",\n                        \"username\": \"alice\",\n                        \"id\": \"64df9ce869c47bca25754b8e\"\n                    }\n                },\n                {\n                    \"_id\": \"64df9ce869c47bca25754b9a\",\n                    \"user\": \"64df9ce869c47bca25754b90\",\n                    \"target\": {\n                        \"_id\": \"64df9ce869c47bca25754b92\",\n                        \"username\": \"charlie\",\n                        \"id\": \"64df9ce869c47bca25754b92\"\n                    }\n                }\n            ],\n            \"nFollowing\": 2,\n            \"id\": \"64df9ce869c47bca25754b90\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Fail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/users/{{username}}o",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										"{{username}}o"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-CYlSidhEIRi+Cbkk4NP2JdeSiKw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:07:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"data\": {\n        \"username\": \"user not found\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Follow User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/:username/follow",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								":username",
+								"follow"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"description": "username of user to follow"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/users/{{username}}/follow",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										"{{username}}",
+										"follow"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-bff5r/a5MyNNWy9hjn8a8pOLDxA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:08:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Fail",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/users/{{username}}/follow",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										"{{username}}",
+										"follow"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d-teQH6B2fCQ5XLk8UYdSNb9JRZfE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:08:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"data\": {\n        \"username\": \"user already followed\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Unfollow User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/:username/follow",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								":username",
+								"follow"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"description": "username of user to unfollow"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/users/{{username}}/follow",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										"{{username}}",
+										"follow"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-bff5r/a5MyNNWy9hjn8a8pOLDxA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:08:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Fail",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/users/{{username}}/follow",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										"{{username}}",
+										"follow"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-QTkQcs0Am1jdDusHez1DvUSQSJw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:08:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"data\": {\n        \"username\": \"user not followed\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "User Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/logout",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/auth/logout",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-bff5r/a5MyNNWy9hjn8a8pOLDxA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:08:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			],
+			"description": "This endpoint handles user registration and profile management. Users can create accounts, delete accounts, and update their profile information securely. User can also follow and unfollow other users."
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Get Posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/posts?feed=1&q=test",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "feed",
+									"value": "1",
+									"description": "optional set truthy value to get user feeds"
+								},
+								{
+									"key": "q",
+									"value": "test",
+									"description": "optional string keyword to search posts caption"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/posts",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "feed",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "q",
+											"value": "test",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1898"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"76a-EUZjsq31NFCjGnxiuc7SpDUYwXY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:09:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"posts\": [\n            {\n                \"_id\": \"64df9ce869c47bca25754ba1\",\n                \"author\": {\n                    \"_id\": \"64df9ce869c47bca25754b8e\",\n                    \"username\": \"alice\",\n                    \"createdAt\": \"2023-08-18T16:31:36.638Z\",\n                    \"updatedAt\": \"2023-08-18T16:31:36.638Z\",\n                    \"__v\": 0,\n                    \"id\": \"64df9ce869c47bca25754b8e\"\n                },\n                \"image\": \"https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692375980942.jpg\",\n                \"caption\": \"Alice post 1\",\n                \"createdAt\": \"2023-08-18T16:31:36.870Z\",\n                \"updatedAt\": \"2023-08-18T16:31:36.870Z\",\n                \"__v\": 0,\n                \"nLikes\": 2,\n                \"nComments\": 1,\n                \"id\": \"64df9ce869c47bca25754ba1\"\n            },\n            {\n                \"_id\": \"64df9ce869c47bca25754ba3\",\n                \"author\": {\n                    \"_id\": \"64df9ce869c47bca25754b8e\",\n                    \"username\": \"alice\",\n                    \"createdAt\": \"2023-08-18T16:31:36.638Z\",\n                    \"updatedAt\": \"2023-08-18T16:31:36.638Z\",\n                    \"__v\": 0,\n                    \"id\": \"64df9ce869c47bca25754b8e\"\n                },\n                \"image\": \"https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692376173903.jpg\",\n                \"caption\": \"Alice post 2\",\n                \"createdAt\": \"2023-08-18T16:31:36.871Z\",\n                \"updatedAt\": \"2023-08-18T16:31:36.871Z\",\n                \"__v\": 0,\n                \"nLikes\": 1,\n                \"nComments\": 0,\n                \"id\": \"64df9ce869c47bca25754ba3\"\n            },\n            {\n                \"_id\": \"64df9e539904d4c82d74361f\",\n                \"author\": {\n                    \"_id\": \"64df9ce869c47bca25754b90\",\n                    \"username\": \"bob\",\n                    \"createdAt\": \"2023-08-18T16:31:36.713Z\",\n                    \"updatedAt\": \"2023-08-18T23:18:02.531Z\",\n                    \"__v\": 2,\n                    \"id\": \"64df9ce869c47bca25754b90\"\n                },\n                \"image\": \"https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692376659391.jpg\",\n                \"caption\": \"testing post 2\",\n                \"createdAt\": \"2023-08-18T16:37:39.735Z\",\n                \"updatedAt\": \"2023-08-18T16:37:39.735Z\",\n                \"__v\": 0,\n                \"nLikes\": 0,\n                \"nComments\": 0,\n                \"id\": \"64df9e539904d4c82d74361f\"\n            },\n            {\n                \"_id\": \"64dfa1e60cc18c77d7097b99\",\n                \"author\": {\n                    \"_id\": \"64df9ce869c47bca25754b90\",\n                    \"username\": \"bob\",\n                    \"createdAt\": \"2023-08-18T16:31:36.713Z\",\n                    \"updatedAt\": \"2023-08-18T23:18:02.531Z\",\n                    \"__v\": 2,\n                    \"id\": \"64df9ce869c47bca25754b90\"\n                },\n                \"image\": \"https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692377574188.jpg\",\n                \"caption\": \"zxczxczxc\",\n                \"createdAt\": \"2023-08-18T16:52:54.605Z\",\n                \"updatedAt\": \"2023-08-18T16:53:04.775Z\",\n                \"__v\": 0,\n                \"nLikes\": 0,\n                \"nComments\": 0,\n                \"id\": \"64dfa1e60cc18c77d7097b99\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "Get User Feeds",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/posts?feed=1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "feed",
+											"value": "1"
+										},
+										{
+											"key": "q",
+											"value": "test",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1898"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"76a-EUZjsq31NFCjGnxiuc7SpDUYwXY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:10:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"posts\": [\n            {\n                \"_id\": \"64df9ce869c47bca25754ba1\",\n                \"author\": {\n                    \"_id\": \"64df9ce869c47bca25754b8e\",\n                    \"username\": \"alice\",\n                    \"createdAt\": \"2023-08-18T16:31:36.638Z\",\n                    \"updatedAt\": \"2023-08-18T16:31:36.638Z\",\n                    \"__v\": 0,\n                    \"id\": \"64df9ce869c47bca25754b8e\"\n                },\n                \"image\": \"https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692375980942.jpg\",\n                \"caption\": \"Alice post 1\",\n                \"createdAt\": \"2023-08-18T16:31:36.870Z\",\n                \"updatedAt\": \"2023-08-18T16:31:36.870Z\",\n                \"__v\": 0,\n                \"nLikes\": 2,\n                \"nComments\": 1,\n                \"id\": \"64df9ce869c47bca25754ba1\"\n            },\n            {\n                \"_id\": \"64df9ce869c47bca25754ba3\",\n                \"author\": {\n                    \"_id\": \"64df9ce869c47bca25754b8e\",\n                    \"username\": \"alice\",\n                    \"createdAt\": \"2023-08-18T16:31:36.638Z\",\n                    \"updatedAt\": \"2023-08-18T16:31:36.638Z\",\n                    \"__v\": 0,\n                    \"id\": \"64df9ce869c47bca25754b8e\"\n                },\n                \"image\": \"https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692376173903.jpg\",\n                \"caption\": \"Alice post 2\",\n                \"createdAt\": \"2023-08-18T16:31:36.871Z\",\n                \"updatedAt\": \"2023-08-18T16:31:36.871Z\",\n                \"__v\": 0,\n                \"nLikes\": 1,\n                \"nComments\": 0,\n                \"id\": \"64df9ce869c47bca25754ba3\"\n            },\n            {\n                \"_id\": \"64df9e539904d4c82d74361f\",\n                \"author\": {\n                    \"_id\": \"64df9ce869c47bca25754b90\",\n                    \"username\": \"bob\",\n                    \"createdAt\": \"2023-08-18T16:31:36.713Z\",\n                    \"updatedAt\": \"2023-08-18T23:18:02.531Z\",\n                    \"__v\": 2,\n                    \"id\": \"64df9ce869c47bca25754b90\"\n                },\n                \"image\": \"https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692376659391.jpg\",\n                \"caption\": \"testing post 2\",\n                \"createdAt\": \"2023-08-18T16:37:39.735Z\",\n                \"updatedAt\": \"2023-08-18T16:37:39.735Z\",\n                \"__v\": 0,\n                \"nLikes\": 0,\n                \"nComments\": 0,\n                \"id\": \"64df9e539904d4c82d74361f\"\n            },\n            {\n                \"_id\": \"64dfa1e60cc18c77d7097b99\",\n                \"author\": {\n                    \"_id\": \"64df9ce869c47bca25754b90\",\n                    \"username\": \"bob\",\n                    \"createdAt\": \"2023-08-18T16:31:36.713Z\",\n                    \"updatedAt\": \"2023-08-18T23:18:02.531Z\",\n                    \"__v\": 2,\n                    \"id\": \"64df9ce869c47bca25754b90\"\n                },\n                \"image\": \"https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692377574188.jpg\",\n                \"caption\": \"zxczxczxc\",\n                \"createdAt\": \"2023-08-18T16:52:54.605Z\",\n                \"updatedAt\": \"2023-08-18T16:53:04.775Z\",\n                \"__v\": 0,\n                \"nLikes\": 0,\n                \"nComments\": 0,\n                \"id\": \"64dfa1e60cc18c77d7097b99\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "Search Posts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/posts?feed=1&q=test",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "feed",
+											"value": "1"
+										},
+										{
+											"key": "q",
+											"value": "test"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "505"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f9-9wpZHD3ApB0ndIe/FxnCvDhk7UI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:10:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"posts\": [\n            {\n                \"_id\": \"64df9e539904d4c82d74361f\",\n                \"author\": {\n                    \"_id\": \"64df9ce869c47bca25754b90\",\n                    \"username\": \"bob\",\n                    \"createdAt\": \"2023-08-18T16:31:36.713Z\",\n                    \"updatedAt\": \"2023-08-18T23:18:02.531Z\",\n                    \"__v\": 2,\n                    \"id\": \"64df9ce869c47bca25754b90\"\n                },\n                \"image\": \"https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692376659391.jpg\",\n                \"caption\": \"testing post 2\",\n                \"createdAt\": \"2023-08-18T16:37:39.735Z\",\n                \"updatedAt\": \"2023-08-18T16:37:39.735Z\",\n                \"__v\": 0,\n                \"nLikes\": 0,\n                \"nComments\": 0,\n                \"id\": \"64df9e539904d4c82d74361f\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"curr_post\", pm.response.json().data.post.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"description": "required image of the post",
+									"type": "file",
+									"src": "/C:/Users/khusyasy/Pictures/img2.jpg"
+								},
+								{
+									"key": "caption",
+									"value": "testing post 2",
+									"description": "required caption of the post",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/posts",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/khusyasy/Pictures/img2.jpg"
+										},
+										{
+											"key": "caption",
+											"value": "testing post 2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/posts",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "334"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14e-x3Tj9AjUzKPcUYkfqVLeuvyybwc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:11:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"post\": {\n            \"author\": \"64e0084f842dd6c184d17c84\",\n            \"image\": \"https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692403867555.jpg\",\n            \"caption\": \"testing post 2\",\n            \"_id\": \"64e0089b842dd6c184d17c98\",\n            \"createdAt\": \"2023-08-19T00:11:07.906Z\",\n            \"updatedAt\": \"2023-08-19T00:11:07.906Z\",\n            \"__v\": 0,\n            \"id\": \"64e0089b842dd6c184d17c98\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Post by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/posts/:id",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"posts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{curr_post}}",
+									"description": "id of post to get"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/posts/{{curr_post}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"posts",
+										"{{curr_post}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "532"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"214-97ajdzMksQej5SG60ObGC7DrTUY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:11:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"post\": {\n            \"_id\": \"64e0089b842dd6c184d17c98\",\n            \"author\": {\n                \"_id\": \"64e0084f842dd6c184d17c84\",\n                \"username\": \"khusyasy\",\n                \"createdAt\": \"2023-08-19T00:09:51.913Z\",\n                \"updatedAt\": \"2023-08-19T00:09:54.585Z\",\n                \"__v\": 1,\n                \"id\": \"64e0084f842dd6c184d17c84\"\n            },\n            \"image\": \"https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692403867555.jpg\",\n            \"caption\": \"testing post 2\",\n            \"createdAt\": \"2023-08-19T00:11:07.906Z\",\n            \"updatedAt\": \"2023-08-19T00:11:07.906Z\",\n            \"__v\": 0,\n            \"likes\": [],\n            \"nLikes\": 0,\n            \"comments\": [],\n            \"nComments\": 0,\n            \"id\": \"64e0089b842dd6c184d17c98\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"caption\": \"testing update post 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/posts/:id",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"posts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{curr_post}}",
+									"description": "id of post to update"
+								}
+							]
+						},
+						"description": "| type | **type** |\n| --- | --- |\n| caption | string (required) |"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"caption\": \"testing update post 2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/posts/{{curr_post}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"posts",
+										"{{curr_post}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "539"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21b-T9j776FT7M6v/5D4KHursjiqWks\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:12:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"post\": {\n            \"_id\": \"64e0089b842dd6c184d17c98\",\n            \"author\": {\n                \"_id\": \"64e0084f842dd6c184d17c84\",\n                \"username\": \"khusyasy\",\n                \"createdAt\": \"2023-08-19T00:09:51.913Z\",\n                \"updatedAt\": \"2023-08-19T00:09:54.585Z\",\n                \"__v\": 1,\n                \"id\": \"64e0084f842dd6c184d17c84\"\n            },\n            \"image\": \"https://mlk-konexi-be.s3.ap-southeast-1.amazonaws.com/1692403867555.jpg\",\n            \"caption\": \"testing update post 2\",\n            \"createdAt\": \"2023-08-19T00:11:07.906Z\",\n            \"updatedAt\": \"2023-08-19T00:12:05.948Z\",\n            \"__v\": 0,\n            \"likes\": [],\n            \"nLikes\": 0,\n            \"comments\": [],\n            \"nComments\": 0,\n            \"id\": \"64e0089b842dd6c184d17c98\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/posts/:id",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"posts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{curr_post}}",
+									"description": "id of post to delete"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/posts/{{curr_post}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"posts",
+										"{{curr_post}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-bff5r/a5MyNNWy9hjn8a8pOLDxA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:12:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Like Post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/posts/:id/like",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"posts",
+								":id",
+								"like"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{curr_post}}",
+									"description": "id of post to like"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/posts/{{curr_post}}/like",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"posts",
+										"{{curr_post}}",
+										"like"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-bff5r/a5MyNNWy9hjn8a8pOLDxA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:12:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Fail",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/posts/{{curr_post}}/like",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"posts",
+										"{{curr_post}}",
+										"like"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-NnTi36ct5bv/bA/rQmKYayMNa/U\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:12:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"data\": {\n        \"id\": \"post already liked\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Unlike Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/posts/:id/like",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"posts",
+								":id",
+								"like"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{curr_post}}",
+									"description": "id of post to unlike"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/posts/{{curr_post}}/like",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"posts",
+										"{{curr_post}}",
+										"like"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-bff5r/a5MyNNWy9hjn8a8pOLDxA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:12:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Fail",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/posts/{{curr_post}}/like",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"posts",
+										"{{curr_post}}",
+										"like"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30-ujTAPC9DFSOJ3dJVkOUwuuPRO8s\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Aug 2023 00:12:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"data\": {\n        \"id\": \"post not liked\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "This component allows users to create, edit, and delete posts. Users can also like and comment on posts, see posts from users they follow, and search post caption by keyword."
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{JWT}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://13.239.57.177:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "JWT",
+			"value": ""
+		},
+		{
+			"key": "username",
+			"value": "bob"
+		},
+		{
+			"key": "curr_post",
+			"value": ""
+		}
+	]
+}
